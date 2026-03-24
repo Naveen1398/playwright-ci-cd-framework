@@ -13,6 +13,11 @@ pipeline {
             }
         }
 
+        stage('Install Browsers') {
+             steps {
+                bat 'npx playwright install --with-deps'
+        }
+}
         stage('Test') {
             steps {
                 bat 'npx playwright test'
