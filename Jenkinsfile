@@ -2,32 +2,26 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NodeJS'   // must match Jenkins tool name
+        nodejs 'NodeJS'
         allure 'Allure'
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Naveen1398/playwright-ci-cd-framework.git'
-            }
-        }
-
         stage('Install') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'npx playwright test'
+                bat 'npx playwright test'
             }
         }
 
         stage('Allure Report') {
             steps {
-                sh 'allure generate allure-results --clean -o allure-report'
+                bat 'allure generate allure-results --clean -o allure-report'
             }
         }
     }
